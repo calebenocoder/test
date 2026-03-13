@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap');
+
+:root {
+  --old-gold: #CFB53B;
+  --old-gold-dark: #A89030;
+  --old-gold-light: #E8D068;
+  --cream: #FFFBF0;
+  --cream-dark: #F5EDD6;
+  --dark: #0A0A08;
+  --dark-soft: #1A1A15;
+  --dark-medium: #2A2A22;
+  --text-light: #F0E8D0;
+  --text-muted: #A09880;
+  --gold-gradient: linear-gradient(135deg, #CFB53B 0%, #E8D068 50%, #CFB53B 100%);
+  --gold-shimmer: linear-gradient(90deg, transparent 0%, rgba(207, 181, 59, 0.3) 50%, transparent 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--dark);
+  color: var(--cream);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--old-gold);
+  border-radius: 3px;
+}
+
+::selection {
+  background: rgba(207, 181, 59, 0.3);
+  color: var(--cream);
+}
