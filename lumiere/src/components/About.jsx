@@ -1,11 +1,9 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { i18n } from '../i18n';
 
-const pillars = [
-  { title: 'Precision', text: 'Every procedure guided by laser-accurate technology and decades of clinical expertise.' },
-  { title: 'Comfort', text: 'Redefining the dental experience — treatments so gentle you\'ll forget you\'re at the dentist.' },
-  { title: 'Excellence', text: 'Uncompromising standards in materials, techniques, and patient care at every step.' },
-];
+const pillars = i18n.about.pillars;
+const whyItems = i18n.about.whyItems;
 
 export default function About() {
   const ref = useRef(null);
@@ -63,7 +61,7 @@ export default function About() {
             animate={inView ? { opacity: 1 } : {}}
             transition={{ delay: 0.3 }}
             style={{
-              fontSize: '10px',
+              fontSize: '13px',
               fontWeight: 400,
               letterSpacing: '5px',
               textTransform: 'uppercase',
@@ -71,7 +69,7 @@ export default function About() {
               marginBottom: '16px',
             }}
           >
-            Who We Are
+            {i18n.about.badge}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -86,7 +84,7 @@ export default function About() {
               marginBottom: '32px',
             }}
           >
-            The Art of Modern Dentistry
+            {i18n.about.title}
           </motion.h2>
         </div>
 
@@ -105,15 +103,14 @@ export default function About() {
           >
             <p style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontSize: '24px',
+              fontSize: '28px',
               fontWeight: 300,
               fontStyle: 'italic',
               lineHeight: 1.8,
               color: 'var(--text-light)',
               marginBottom: '28px',
             }}>
-              "At Lumière, we believe dentistry should be an experience of
-              comfort and sophistication — not anxiety."
+              {i18n.about.quote}
             </p>
             <p style={{
               fontSize: '14px',
@@ -122,20 +119,15 @@ export default function About() {
               color: 'var(--text-muted)',
               marginBottom: '20px',
             }}>
-              Founded on the principle that advanced technology and refined
-              care should work in harmony, Lumière represents the future of
-              dental excellence. Our clinic combines the precision of Er:YAG
-              laser technology with the warmth of personalized patient care.
+              {i18n.about.description1}
             </p>
             <p style={{
-              fontSize: '14px',
+              fontSize: '17px',
               fontWeight: 300,
               lineHeight: 2,
               color: 'var(--text-muted)',
             }}>
-              Every detail — from our state-of-the-art LiteTouch™ laser
-              systems to the carefully curated environment of our clinic —
-              has been designed to transform your perception of dental care.
+              {i18n.about.description2}
             </p>
           </motion.div>
 
@@ -158,17 +150,10 @@ export default function About() {
               color: 'var(--old-gold)',
               marginBottom: '32px',
             }}>
-              Why Choose Lumière
+              {i18n.about.whyTitle}
             </h3>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-              {[
-                'Certified LiteTouch™ Er:YAG Laser Center',
-                'Minimally invasive approach to every procedure',
-                'Same-day treatments with rapid recovery',
-                'Biocompatible materials exclusively',
-                'Personalized treatment planning with 3D imaging',
-                'Luxury patient experience from arrival to aftercare',
-              ].map((item, i) => (
+              {whyItems.map((item, i) => (
                 <motion.li
                   key={i}
                   initial={{ opacity: 0, x: 20 }}
@@ -178,7 +163,7 @@ export default function About() {
                     display: 'flex',
                     alignItems: 'flex-start',
                     gap: '16px',
-                    fontSize: '13px',
+                    fontSize: '16px',
                     fontWeight: 300,
                     color: 'var(--text-light)',
                     lineHeight: 1.6,
@@ -221,7 +206,7 @@ export default function About() {
             >
               <h4 style={{
                 fontFamily: "'Cormorant Garamond', serif",
-                fontSize: '24px',
+                fontSize: '28px',
                 fontWeight: 400,
                 color: 'var(--old-gold)',
                 marginBottom: '16px',
@@ -230,7 +215,7 @@ export default function About() {
                 {pillar.title}
               </h4>
               <p style={{
-                fontSize: '13px',
+                fontSize: '16px',
                 fontWeight: 300,
                 lineHeight: 1.8,
                 color: 'var(--text-muted)',

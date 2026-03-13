@@ -1,7 +1,18 @@
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import LightBeam, { LaserPulse, GoldParticles, ShimmerLine } from './LightBeam';
+import { i18n } from '../i18n';
 
 export default function Hero() {
+  const [videoKey, setVideoKey] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVideoKey(prev => prev + 1);
+    }, 15000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section
       id="hero"
@@ -15,34 +26,75 @@ export default function Hero() {
         justifyContent: 'center',
       }}
     >
+      {/* Subtle Background Icon */}
+      <div style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '80vh',
+        height: '80vh',
+        zIndex: 0,
+        opacity: 0.03,
+        pointerEvents: 'none',
+      }}>
+        <img src={i18n.logos.icon} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+      </div>
+
       {/* Background Video */}
       <div style={{
         position: 'absolute',
-        inset: 0,
-        zIndex: 0,
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 1,
+        background: 'var(--dark)',
       }}>
-        <iframe
-          src="https://www.youtube.com/embed/xwkUndtlmbE?autoplay=1&mute=1&loop=1&playlist=xwkUndtlmbE&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            width: '120vw',
-            height: '120vh',
-            transform: 'translate(-50%, -50%)',
-            border: 'none',
-            pointerEvents: 'none',
-          }}
-          allow="autoplay; encrypted-media"
-          allowFullScreen
-          title="Background Video"
-        />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={videoKey}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              opacity: { duration: 2, ease: "easeInOut" }
+            }}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+            }}
+          >
+            <iframe
+              src={`https://www.youtube.com/embed/xwkUndtlmbE?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=${window.location.origin}`}
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                width: '150vh', 
+                height: '100vh',
+                minWidth: '100vw',
+                minHeight: '100vh',
+                transform: 'translate(-50%, -50%) scale(1.5)', 
+                border: 'none',
+                pointerEvents: 'none',
+              }}
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+              title="Background Video"
+            />
+          </motion.div>
+        </AnimatePresence>
+        
         {/* Dark overlay */}
         <div style={{
           position: 'absolute',
           inset: 0,
           background: 'linear-gradient(180deg, rgba(10,10,8,0.7) 0%, rgba(10,10,8,0.5) 40%, rgba(10,10,8,0.8) 100%)',
-          zIndex: 1,
+          zIndex: 2,
         }} />
       </div>
 
@@ -61,7 +113,7 @@ export default function Hero() {
         position: 'relative',
         zIndex: 10,
         textAlign: 'center',
-        maxWidth: '900px',
+        maxWidth: '1000px',
         padding: '0 24px',
       }}>
         {/* Decorative line above */}
@@ -83,7 +135,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
           style={{
-            fontSize: '11px',
+            fontSize: '14px',
             fontWeight: 400,
             letterSpacing: '6px',
             textTransform: 'uppercase',
@@ -91,35 +143,30 @@ export default function Hero() {
             marginBottom: '20px',
           }}
         >
-          Advanced Dental Excellence
+          {i18n.hero.subtitle}
         </motion.p>
 
-        {/* Main Title */}
-        <motion.h1
+        {/* Main Title / TITLE.SVG */}
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
           style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: 'clamp(48px, 10vw, 120px)',
-            fontWeight: 300,
-            letterSpacing: '16px',
-            textTransform: 'uppercase',
-            lineHeight: 1,
-            marginBottom: '24px',
+            marginBottom: '32px',
             position: 'relative',
           }}
         >
-          <span style={{
-            background: 'linear-gradient(135deg, #CFB53B 0%, #E8D068 30%, #FFFBF0 50%, #E8D068 70%, #CFB53B 100%)',
-            backgroundSize: '200% auto',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            animation: 'goldShimmer 4s linear infinite',
-          }}>
-            Lumière
-          </span>
-        </motion.h1>
+          <img 
+            src={i18n.logos.title} 
+            alt="Lumière" 
+            style={{ 
+              width: '90%',
+              maxWidth: '800px',
+              height: 'auto',
+              filter: 'drop-shadow(0 0 30px rgba(207, 181, 59, 0.2))'
+            }} 
+          />
+        </motion.div>
 
         {/* Tagline */}
         <motion.p
@@ -136,7 +183,7 @@ export default function Hero() {
             marginBottom: '16px',
           }}
         >
-          Where Light Meets Precision
+          {i18n.hero.tagline}
         </motion.p>
 
         <motion.p
@@ -144,7 +191,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.4 }}
           style={{
-            fontSize: '13px',
+            fontSize: '18px',
             fontWeight: 300,
             color: 'var(--text-muted)',
             letterSpacing: '2px',
@@ -154,8 +201,7 @@ export default function Hero() {
             lineHeight: 1.8,
           }}
         >
-          Pioneering Er:YAG laser dentistry for a painless, precise,
-          and transformative experience
+          {i18n.hero.description}
         </motion.p>
 
         {/* CTA Buttons */}
@@ -179,14 +225,14 @@ export default function Hero() {
               background: 'var(--old-gold)',
               color: 'var(--dark)',
               textDecoration: 'none',
-              fontSize: '10px',
+              fontSize: '13px',
               fontWeight: 600,
               letterSpacing: '4px',
               textTransform: 'uppercase',
               transition: 'all 0.4s ease',
             }}
           >
-            Discover Our Technology
+            {i18n.hero.ctaDiscover}
           </motion.a>
 
           <motion.a
@@ -198,7 +244,7 @@ export default function Hero() {
               border: '1px solid rgba(207, 181, 59, 0.4)',
               color: 'var(--old-gold)',
               textDecoration: 'none',
-              fontSize: '10px',
+              fontSize: '13px',
               fontWeight: 500,
               letterSpacing: '4px',
               textTransform: 'uppercase',
@@ -206,7 +252,7 @@ export default function Hero() {
               transition: 'all 0.4s ease',
             }}
           >
-            Schedule Visit
+            {i18n.hero.ctaSchedule}
           </motion.a>
         </motion.div>
       </div>
@@ -229,12 +275,12 @@ export default function Hero() {
         }}
       >
         <span style={{
-          fontSize: '9px',
+          fontSize: '11px',
           letterSpacing: '3px',
           textTransform: 'uppercase',
           color: 'var(--text-muted)',
         }}>
-          Scroll
+          {i18n.hero.scroll}
         </span>
         <motion.div
           animate={{ y: [0, 8, 0] }}

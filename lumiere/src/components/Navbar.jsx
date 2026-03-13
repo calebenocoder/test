@@ -1,13 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const navLinks = [
-  { name: 'Home', href: '#hero' },
-  { name: 'Services', href: '#services' },
-  { name: 'Technology', href: '#technology' },
-  { name: 'About', href: '#about' },
-  { name: 'Contact', href: '#contact' },
-];
+import { i18n } from '../i18n';
+
+const navLinks = i18n.nav.links;
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -43,19 +39,21 @@ export default function Navbar() {
       <motion.a
         href="#hero"
         style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: '28px',
-          fontWeight: 300,
-          letterSpacing: '8px',
-          textTransform: 'uppercase',
-          background: 'linear-gradient(135deg, #CFB53B, #E8D068, #CFB53B)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
+          display: 'flex',
+          alignItems: 'center',
           textDecoration: 'none',
         }}
         whileHover={{ scale: 1.02 }}
       >
-        Lumière
+        <img
+          src={scrolled ? i18n.logos.golden : i18n.logos.white}
+          alt="Lumière"
+          style={{
+            height: scrolled ? '32px' : '40px',
+            width: 'auto',
+            transition: 'all 0.5s cubic-bezier(0.22, 1, 0.36, 1)'
+          }}
+        />
       </motion.a>
 
       {/* Desktop Nav */}
@@ -76,7 +74,7 @@ export default function Navbar() {
             style={{
               color: 'var(--text-muted)',
               textDecoration: 'none',
-              fontSize: '11px',
+              fontSize: '14px',
               fontWeight: 400,
               letterSpacing: '3px',
               textTransform: 'uppercase',
@@ -121,7 +119,7 @@ export default function Navbar() {
             border: '1px solid var(--old-gold)',
             color: 'var(--old-gold)',
             textDecoration: 'none',
-            fontSize: '10px',
+            fontSize: '12px',
             fontWeight: 500,
             letterSpacing: '3px',
             textTransform: 'uppercase',
@@ -132,7 +130,7 @@ export default function Navbar() {
             color: 'var(--dark)',
           }}
         >
-          Book Now
+          {i18n.nav.bookNow}
         </motion.a>
       </div>
 
@@ -220,6 +218,9 @@ export default function Navbar() {
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
           .mobile-menu-btn { display: block !important; }
+          nav { 
+            padding: 5px 20px !important; 
+          }
         }
       `}</style>
     </motion.nav>

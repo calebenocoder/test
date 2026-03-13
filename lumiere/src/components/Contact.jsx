@@ -1,5 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
+import { i18n } from '../i18n';
 
 export default function Contact() {
   const ref = useRef(null);
@@ -12,7 +13,7 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Thank you for your inquiry. We will contact you shortly.');
+    alert(i18n.contact.form.success);
     setFormData({ name: '', email: '', phone: '', service: '', message: '' });
   };
 
@@ -23,7 +24,7 @@ export default function Contact() {
     border: 'none',
     borderBottom: '1px solid rgba(207, 181, 59, 0.2)',
     color: 'var(--cream)',
-    fontSize: '13px',
+    fontSize: '16px',
     fontWeight: 300,
     fontFamily: "'Montserrat', sans-serif",
     letterSpacing: '1px',
@@ -60,7 +61,7 @@ export default function Contact() {
             animate={inView ? { opacity: 1 } : {}}
             transition={{ delay: 0.3 }}
             style={{
-              fontSize: '10px',
+              fontSize: '13px',
               fontWeight: 400,
               letterSpacing: '5px',
               textTransform: 'uppercase',
@@ -68,7 +69,7 @@ export default function Contact() {
               marginBottom: '16px',
             }}
           >
-            Begin Your Journey
+            {i18n.contact.badge}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -82,7 +83,7 @@ export default function Contact() {
               letterSpacing: '4px',
             }}
           >
-            Contact
+            {i18n.contact.title}
           </motion.h2>
         </div>
 
@@ -99,23 +100,22 @@ export default function Contact() {
           >
             <p style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontSize: '22px',
+              fontSize: '26px',
               fontWeight: 300,
               fontStyle: 'italic',
               lineHeight: 1.8,
               color: 'var(--text-light)',
               marginBottom: '48px',
             }}>
-              Experience the future of dentistry.
-              Schedule your consultation today.
+              {i18n.contact.subtitle}
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
               {[
-                { label: 'Location', value: '123 Luxury Avenue, Suite 100\nNew York, NY 10001' },
-                { label: 'Phone', value: '+1 (212) 555-0100' },
-                { label: 'Email', value: 'hello@lumiere-dental.com' },
-                { label: 'Hours', value: 'Mon – Fri: 9:00 – 18:00\nSat: 10:00 – 15:00' },
+                { label: i18n.contact.info.location.label, value: i18n.contact.info.location.value },
+                { label: i18n.contact.info.phone.label, value: i18n.contact.info.phone.label === 'Phone' ? '+1 (212) 555-0100' : i18n.contact.info.phone.value },
+                { label: i18n.contact.info.email.label, value: i18n.contact.info.email.value },
+                { label: i18n.contact.info.hours.label, value: i18n.contact.info.hours.value },
               ].map((item, i) => (
                 <motion.div
                   key={item.label}
@@ -124,7 +124,7 @@ export default function Contact() {
                   transition={{ delay: 0.8 + i * 0.1 }}
                 >
                   <p style={{
-                    fontSize: '10px',
+                    fontSize: '13px',
                     fontWeight: 500,
                     letterSpacing: '3px',
                     textTransform: 'uppercase',
@@ -134,7 +134,7 @@ export default function Contact() {
                     {item.label}
                   </p>
                   <p style={{
-                    fontSize: '14px',
+                    fontSize: '17px',
                     fontWeight: 300,
                     lineHeight: 1.8,
                     color: 'var(--text-muted)',
@@ -158,7 +158,7 @@ export default function Contact() {
             <input
               type="text"
               name="name"
-              placeholder="Full Name"
+              placeholder={i18n.contact.form.name}
               value={formData.name}
               onChange={handleChange}
               required
@@ -169,7 +169,7 @@ export default function Contact() {
             <input
               type="email"
               name="email"
-              placeholder="Email Address"
+              placeholder={i18n.contact.form.email}
               value={formData.email}
               onChange={handleChange}
               required
@@ -180,7 +180,7 @@ export default function Contact() {
             <input
               type="tel"
               name="phone"
-              placeholder="Phone Number"
+              placeholder={i18n.contact.form.phone}
               value={formData.phone}
               onChange={handleChange}
               style={inputStyle}
@@ -201,15 +201,14 @@ export default function Contact() {
               onFocus={(e) => e.target.style.borderBottomColor = '#CFB53B'}
               onBlur={(e) => e.target.style.borderBottomColor = 'rgba(207, 181, 59, 0.2)'}
             >
-              <option value="" disabled>Select Service</option>
-              <option value="laser">Er:YAG Laser Treatment</option>
-              <option value="implants">Dental Implants</option>
-              <option value="aligners">Clear Aligners</option>
-              <option value="consultation">General Consultation</option>
+              <option value="" disabled>{i18n.contact.form.servicePlaceholder}</option>
+              {i18n.contact.form.services.map(service => (
+                <option key={service.value} value={service.value}>{service.label}</option>
+              ))}
             </select>
             <textarea
               name="message"
-              placeholder="Your Message"
+              placeholder={i18n.contact.form.message}
               rows={4}
               value={formData.message}
               onChange={handleChange}
@@ -231,7 +230,7 @@ export default function Contact() {
                 background: 'var(--old-gold)',
                 color: 'var(--dark)',
                 border: 'none',
-                fontSize: '10px',
+                fontSize: '13px',
                 fontWeight: 600,
                 fontFamily: "'Montserrat', sans-serif",
                 letterSpacing: '4px',
@@ -241,7 +240,7 @@ export default function Contact() {
                 alignSelf: 'flex-start',
               }}
             >
-              Send Inquiry
+              {i18n.contact.form.submit}
             </motion.button>
           </motion.form>
         </div>

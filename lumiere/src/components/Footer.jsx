@@ -1,5 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { i18n } from '../i18n';
 
 export default function Footer() {
   const ref = useRef(null);
@@ -29,18 +30,7 @@ export default function Footer() {
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <span style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: '22px',
-            fontWeight: 300,
-            letterSpacing: '6px',
-            textTransform: 'uppercase',
-            background: 'linear-gradient(135deg, #CFB53B, #E8D068)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-          }}>
-            Lumière
-          </span>
+          <img src={i18n.logos.golden} alt="Lumière" style={{ height: '28px', width: 'auto' }} />
         </motion.div>
 
         <motion.div
@@ -53,14 +43,14 @@ export default function Footer() {
             flexWrap: 'wrap',
           }}
         >
-          {['Home', 'Services', 'Technology', 'About', 'Contact'].map((link) => (
+          {i18n.nav.links.map((link) => (
             <a
-              key={link}
-              href={`#${link.toLowerCase()}`}
+              key={link.name}
+              href={link.href}
               style={{
                 color: 'var(--text-muted)',
                 textDecoration: 'none',
-                fontSize: '10px',
+                fontSize: '13px',
                 fontWeight: 400,
                 letterSpacing: '2px',
                 textTransform: 'uppercase',
@@ -69,7 +59,7 @@ export default function Footer() {
               onMouseEnter={(e) => e.target.style.color = '#CFB53B'}
               onMouseLeave={(e) => e.target.style.color = 'var(--text-muted)'}
             >
-              {link}
+              {link.name}
             </a>
           ))}
         </motion.div>
@@ -79,14 +69,14 @@ export default function Footer() {
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.4 }}
           style={{
-            fontSize: '10px',
+            fontSize: '12px',
             fontWeight: 300,
             color: 'var(--text-muted)',
             letterSpacing: '1px',
             opacity: 0.6,
           }}
         >
-          &copy; {new Date().getFullYear()} Lumière Dental. All rights reserved.
+          &copy; {new Date().getFullYear()} {i18n.footer.copy}
         </motion.p>
       </div>
     </footer>

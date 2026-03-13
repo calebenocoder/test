@@ -1,32 +1,10 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { ShimmerLine } from './LightBeam';
+import { i18n } from '../i18n';
 
-const stats = [
-  { value: '2,940', unit: 'nm', label: 'Wavelength' },
-  { value: '99.7', unit: '%', label: 'Precision Rate' },
-  { value: '0', unit: '', label: 'Pain Level' },
-  { value: '50', unit: '%', label: 'Faster Healing' },
-];
-
-const benefits = [
-  {
-    title: 'Virtually Painless',
-    text: 'The Er:YAG laser operates at the optimal wavelength for tissue interaction, enabling procedures that are virtually painless — often without anesthesia.',
-  },
-  {
-    title: 'Minimally Invasive',
-    text: 'Precise energy delivery means only the targeted tissue is affected. Surrounding healthy tissue remains completely untouched and unharmed.',
-  },
-  {
-    title: 'Accelerated Recovery',
-    text: 'Laser treatment promotes faster cellular regeneration and reduces post-operative discomfort, cutting healing time by up to half.',
-  },
-  {
-    title: 'Unmatched Versatility',
-    text: 'From soft tissue surgery to hard tissue preparation, implant procedures to periodontal treatment — one instrument, infinite possibilities.',
-  },
-];
+const stats = i18n.technology.stats;
+const benefits = i18n.technology.benefits;
 
 export default function Technology() {
   const ref = useRef(null);
@@ -83,7 +61,7 @@ export default function Technology() {
             animate={inView ? { opacity: 1 } : {}}
             transition={{ delay: 0.3 }}
             style={{
-              fontSize: '10px',
+              fontSize: '13px',
               fontWeight: 400,
               letterSpacing: '5px',
               textTransform: 'uppercase',
@@ -91,7 +69,7 @@ export default function Technology() {
               marginBottom: '16px',
             }}
           >
-            The Science of Light
+            {i18n.technology.badge}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -106,14 +84,14 @@ export default function Technology() {
               marginBottom: '24px',
             }}
           >
-            LiteTouch™ Er:YAG Laser
+            {i18n.technology.title}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ delay: 0.7 }}
             style={{
-              fontSize: '14px',
+              fontSize: '17px',
               fontWeight: 300,
               lineHeight: 2,
               color: 'var(--text-muted)',
@@ -121,8 +99,7 @@ export default function Technology() {
               margin: '0 auto',
             }}
           >
-            The world's most advanced dental laser system. A breakthrough in
-            precision dentistry that redefines patient comfort and clinical outcomes.
+            {i18n.technology.description}
           </motion.p>
         </div>
 
@@ -218,9 +195,9 @@ export default function Technology() {
             />
 
             {/* Labels */}
-            <text x="150" y="145" textAnchor="middle" fill="#A09880" fontSize="9" fontFamily="Montserrat" letterSpacing="2">HANDPIECE</text>
-            <text x="350" y="80" textAnchor="middle" fill="#CFB53B" fontSize="9" fontFamily="Montserrat" letterSpacing="2" opacity="0.7">2,940nm BEAM</text>
-            <text x="450" y="145" textAnchor="middle" fill="#A09880" fontSize="9" fontFamily="Montserrat" letterSpacing="2">TARGET</text>
+            <text x="150" y="145" textAnchor="middle" fill="#A09880" fontSize="9" fontFamily="Montserrat" letterSpacing="2">{i18n.technology.visualLabels.handpiece}</text>
+            <text x="350" y="80" textAnchor="middle" fill="#CFB53B" fontSize="9" fontFamily="Montserrat" letterSpacing="2" opacity="0.7">{i18n.technology.visualLabels.beam}</text>
+            <text x="450" y="145" textAnchor="middle" fill="#A09880" fontSize="9" fontFamily="Montserrat" letterSpacing="2">{i18n.technology.visualLabels.target}</text>
 
             <defs>
               <linearGradient id="laserGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -253,7 +230,7 @@ export default function Technology() {
             >
               <div style={{
                 fontFamily: "'Cormorant Garamond', serif",
-                fontSize: '42px',
+                fontSize: '48px',
                 fontWeight: 300,
                 color: 'var(--old-gold)',
                 lineHeight: 1,
@@ -263,7 +240,7 @@ export default function Technology() {
                 <span style={{ fontSize: '18px', opacity: 0.7 }}>{stat.unit}</span>
               </div>
               <p style={{
-                fontSize: '10px',
+                fontSize: '13px',
                 fontWeight: 400,
                 letterSpacing: '3px',
                 textTransform: 'uppercase',
@@ -294,7 +271,7 @@ export default function Technology() {
             >
               <h4 style={{
                 fontFamily: "'Cormorant Garamond', serif",
-                fontSize: '22px',
+                fontSize: '26px',
                 fontWeight: 400,
                 color: 'var(--cream)',
                 marginBottom: '12px',
@@ -303,7 +280,7 @@ export default function Technology() {
                 {benefit.title}
               </h4>
               <p style={{
-                fontSize: '13px',
+                fontSize: '16px',
                 fontWeight: 300,
                 lineHeight: 1.9,
                 color: 'var(--text-muted)',
