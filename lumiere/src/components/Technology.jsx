@@ -111,25 +111,26 @@ export default function Technology() {
           style={{
             position: 'relative',
             width: '100%',
-            maxWidth: '700px',
-            margin: '0 auto 100px',
-            padding: '60px',
+            maxWidth: '900px', // Increased from 700px
+            margin: '0 auto 120px',
+            padding: '80px 40px', // Increased padding
             background: 'rgba(10, 10, 8, 0.8)',
             border: '1px solid rgba(207, 181, 59, 0.1)',
+            borderRadius: '12px',
           }}
         >
           {/* Animated laser diagram */}
           <svg width="100%" viewBox="0 0 600 200" style={{ overflow: 'visible' }}>
             {/* Handpiece body */}
-            <rect x="50" y="75" width="200" height="50" rx="4" fill="none" stroke="#CFB53B" strokeWidth="0.5" opacity="0.6" />
-            <rect x="60" y="85" width="180" height="30" rx="2" fill="none" stroke="#CFB53B" strokeWidth="0.3" opacity="0.3" />
-            <text x="150" y="105" textAnchor="middle" fill="#CFB53B" fontSize="10" fontFamily="Montserrat" opacity="0.6">LiteTouch™</text>
+            <rect x="30" y="65" width="220" height="70" rx="8" fill="none" stroke="#CFB53B" strokeWidth="1" opacity="0.6" />
+            <rect x="40" y="75" width="200" height="50" rx="4" fill="none" stroke="#CFB53B" strokeWidth="0.5" opacity="0.3" />
+            <text x="140" y="105" textAnchor="middle" fill="#CFB53B" fontSize="14" fontWeight="300" fontFamily="Montserrat" letterSpacing="1" opacity="0.8">LiteTouch™</text>
 
             {/* Laser beam */}
             <motion.line
-              x1="250" y1="100" x2="450" y2="100"
+              x1="250" y1="100" x2="480" y2="100"
               stroke="url(#laserGradient)"
-              strokeWidth="2"
+              strokeWidth="4" // Increased from 2
               initial={{ pathLength: 0, opacity: 0 }}
               animate={inView ? {
                 pathLength: 1,
@@ -145,10 +146,10 @@ export default function Technology() {
 
             {/* Beam glow */}
             <motion.line
-              x1="250" y1="100" x2="450" y2="100"
+              x1="250" y1="100" x2="480" y2="100"
               stroke="#CFB53B"
-              strokeWidth="8"
-              opacity="0.1"
+              strokeWidth="12" // Increased from 8
+              opacity="0.15"
               initial={{ pathLength: 0 }}
               animate={inView ? { pathLength: 1 } : {}}
               transition={{
@@ -157,16 +158,16 @@ export default function Technology() {
                 repeat: Infinity,
                 repeatDelay: 1,
               }}
-              style={{ filter: 'blur(4px)' }}
+              style={{ filter: 'blur(6px)' }}
             />
 
             {/* Impact point */}
             <motion.circle
-              cx="450" cy="100" r="3"
+              cx="480" cy="100" r="5" // Increased from 3
               fill="#CFB53B"
               initial={{ scale: 0 }}
               animate={inView ? {
-                scale: [0, 1.5, 1],
+                scale: [0, 1.8, 1.2],
                 opacity: [0, 1, 0.8],
               } : {}}
               transition={{
@@ -177,14 +178,14 @@ export default function Technology() {
               }}
             />
             <motion.circle
-              cx="450" cy="100" r="12"
+              cx="480" cy="100" r="16" // Increased from 12
               fill="none"
               stroke="#CFB53B"
-              strokeWidth="0.5"
+              strokeWidth="1"
               initial={{ scale: 0, opacity: 0 }}
               animate={inView ? {
-                scale: [0, 2, 3],
-                opacity: [0.6, 0.2, 0],
+                scale: [0, 2, 3.5],
+                opacity: [0.7, 0.3, 0],
               } : {}}
               transition={{
                 duration: 2,
@@ -195,9 +196,9 @@ export default function Technology() {
             />
 
             {/* Labels */}
-            <text x="150" y="145" textAnchor="middle" fill="#A09880" fontSize="9" fontFamily="Montserrat" letterSpacing="2">{i18n.technology.visualLabels.handpiece}</text>
-            <text x="350" y="80" textAnchor="middle" fill="#CFB53B" fontSize="9" fontFamily="Montserrat" letterSpacing="2" opacity="0.7">{i18n.technology.visualLabels.beam}</text>
-            <text x="450" y="145" textAnchor="middle" fill="#A09880" fontSize="9" fontFamily="Montserrat" letterSpacing="2">{i18n.technology.visualLabels.target}</text>
+            <text x="140" y="165" textAnchor="middle" fill="#A09880" fontSize="11" fontFamily="Montserrat" letterSpacing="3">{i18n.technology.visualLabels.handpiece}</text>
+            <text x="365" y="70" textAnchor="middle" fill="#CFB53B" fontSize="11" fontFamily="Montserrat" letterSpacing="3" opacity="0.9">{i18n.technology.visualLabels.beam}</text>
+            <text x="480" y="165" textAnchor="middle" fill="#A09880" fontSize="11" fontFamily="Montserrat" letterSpacing="3">{i18n.technology.visualLabels.target}</text>
 
             <defs>
               <linearGradient id="laserGradient" x1="0%" y1="0%" x2="100%" y2="0%">
