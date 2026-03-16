@@ -2,12 +2,21 @@ import logoGolden from './assets/2x/LUMIERELOGO@2x.png';
 import logoWhite from './assets/2x/LUMIERELOGOBRANCA@2x.png';
 import titleSvg from './assets/TITLE.svg';
 import iconSvg from './assets/ICON.svg';
+import teamImage from './assets/lumiereodonto__1772637164_3845480942328954384_533428592.jpg';
+import galleryImg1 from './assets/Galerie/lumiereodonto__1719003555_3395570391005786551_533428592.jpg';
+import galleryImg2 from './assets/Galerie/lumiereodonto__1719003555_3395570391022311146_533428592.jpg';
+import galleryImg3 from './assets/Galerie/lumiereodonto__1719003555_3395570391072781711_533428592.jpg';
+import galleryImg4 from './assets/Galerie/lumiereodonto__1719003555_3395570391097899615_533428592.jpg';
+import galleryImg5 from './assets/Galerie/lumiereodonto__1748379600_3641994562936392773_533428592.jpg';
+
 
 export const i18n = {
   nav: {
     links: [
       { name: 'Início', href: '#hero' },
+      { name: 'Equipe', href: '#team' },
       { name: 'Serviços', href: '#services' },
+      { name: 'Resultados', href: '#gallery' },
       { name: 'Tecnologia', href: '#technology' },
       { name: 'Sobre', href: '#about' },
       { name: 'Contato', href: '#contact' },
@@ -16,8 +25,8 @@ export const i18n = {
   },
   hero: {
     subtitle: 'Excelência Odontológica Avançada',
-    tagline: 'Onde a Luz Encontra a Precisão',
-    description: 'Pioneirismo em odontologia a laser Er:YAG para uma experiência indolor, precisa e transformadora.',
+    tagline: 'A revolução da experiência odontológica',
+    description: 'Pioneirismo em odontologia a laser em Feira de Santana, cuidando do que temos de mais bonito: o seu sorriso.',
     ctaDiscover: 'Descubra Nossa Tecnologia',
     ctaSchedule: 'Agende uma Visita',
     scroll: 'Rolar',
@@ -38,6 +47,23 @@ export const i18n = {
       {
         text: 'Profissionalismo e humanidade definem a Lumière. É visível o amor que o Deivison e a Victoria têm pelo que fazem, complementando perfeitamente a maestria do Dr. Felipe.'
       },
+    ]
+  },
+  team: {
+    badge: 'Nossa Equipe',
+    title: 'Cuidado Humanizado',
+    description: 'Nossa equipe é formada por profissionais apaixonados por odontologia e dedicados a proporcionar a melhor experiência possível. Com a liderança técnica do Dr. Felipe e o cuidado de Victoria e Deivison, cada paciente é tratado de forma única e confortável.',
+    image: teamImage
+  },
+  gallery: {
+    badge: 'Resultados Reais',
+    title: 'Antes e Depois',
+    images: [
+      galleryImg1,
+      galleryImg2,
+      galleryImg3,
+      galleryImg4,
+      galleryImg5
     ]
   },
   services: {
